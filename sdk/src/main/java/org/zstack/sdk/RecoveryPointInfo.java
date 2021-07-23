@@ -4,36 +4,36 @@ package org.zstack.sdk;
 
 public class RecoveryPointInfo  {
 
-    public long Id;
-    public void setId(long Id) {
-        this.Id = Id;
+    public long id;
+    public void setId(long id) {
+        this.id = id;
     }
     public long getId() {
-        return this.Id;
+        return this.id;
     }
 
-    public long Size;
-    public void setSize(long Size) {
-        this.Size = Size;
+    public long size;
+    public void setSize(long size) {
+        this.size = size;
     }
     public long getSize() {
-        return this.Size;
+        return this.size;
     }
 
-    public java.lang.String VolId;
-    public void setVolId(java.lang.String VolId) {
-        this.VolId = VolId;
+    public java.lang.String volId;
+    public void setVolId(java.lang.String volId) {
+        this.volId = volId;
     }
     public java.lang.String getVolId() {
-        return this.VolId;
+        return this.volId;
     }
 
-    public java.lang.String Ts;
-    public void setTs(java.lang.String Ts) {
-        this.Ts = Ts;
+    public java.lang.String ts;
+    public void setTs(java.lang.String ts) {
+        this.ts = ts;
     }
     public java.lang.String getTs() {
-        return this.Ts;
+        return this.ts;
     }
 
 }

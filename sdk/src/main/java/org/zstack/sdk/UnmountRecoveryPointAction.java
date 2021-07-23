@@ -28,8 +28,8 @@ public class UnmountRecoveryPointAction extends AbstractAction {
     @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
     public java.lang.String vmUuid;
 
-    @Param(required = true, nonempty = false, nullElements = false, emptyString = true, numberRange = {0L,9223372036854775807L}, noTrim = false)
-    public long recoveryPointId = 0L;
+    @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
+    public java.lang.String recoveryPointId;
 
     @Param(required = false)
     public java.util.List systemTags;

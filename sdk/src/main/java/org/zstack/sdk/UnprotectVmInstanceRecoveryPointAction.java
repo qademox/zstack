@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.zstack.sdk.*;
 
-public class MountRecoveryPointAction extends AbstractAction {
+public class UnprotectVmInstanceRecoveryPointAction extends AbstractAction {
 
     private static final HashMap<String, Parameter> parameterMap = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class MountRecoveryPointAction extends AbstractAction {
 
     public static class Result {
         public ErrorCode error;
-        public org.zstack.sdk.MountRecoveryPointResult value;
+        public org.zstack.sdk.UnprotectVmInstanceRecoveryPointResult value;
 
         public Result throwExceptionIfError() {
             if (error != null) {
@@ -26,10 +26,16 @@ public class MountRecoveryPointAction extends AbstractAction {
     }
 
     @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String vmUuid;
+    public java.lang.String vmInstanceUuid;
 
     @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
     public java.lang.String recoveryPointId;
+
+    @Param(required = false)
+    public java.lang.Integer limit = 1000;
+
+    @Param(required = false)
+    public java.lang.Integer start = 0;
 
     @Param(required = false)
     public java.util.List systemTags;
@@ -49,12 +55,6 @@ public class MountRecoveryPointAction extends AbstractAction {
     @Param(required = false)
     public String requestIp;
 
-    @NonAPIParam
-    public long timeout = -1;
-
-    @NonAPIParam
-    public long pollingInterval = -1;
-
 
     private Result makeResult(ApiResult res) {
         Result ret = new Result();
@@ -63,8 +63,8 @@ public class MountRecoveryPointAction extends AbstractAction {
             return ret;
         }
         
-        org.zstack.sdk.MountRecoveryPointResult value = res.getResult(org.zstack.sdk.MountRecoveryPointResult.class);
-        ret.value = value == null ? new org.zstack.sdk.MountRecoveryPointResult() : value; 
+        org.zstack.sdk.UnprotectVmInstanceRecoveryPointResult value = res.getResult(org.zstack.sdk.UnprotectVmInstanceRecoveryPointResult.class);
+        ret.value = value == null ? new org.zstack.sdk.UnprotectVmInstanceRecoveryPointResult() : value; 
 
         return ret;
     }
@@ -94,10 +94,10 @@ public class MountRecoveryPointAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/cdp-backup-storage/mount-recovery-point";
+        info.path = "/vm-instances/{uuid}/unprotect-recovery-point";
         info.needSession = true;
-        info.needPoll = true;
-        info.parameterName = "params";
+        info.needPoll = false;
+        info.parameterName = "";
         return info;
     }
 

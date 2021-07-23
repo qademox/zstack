@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.zstack.sdk.*;
 
-public class UpdateCdpBackupStorageAction extends AbstractAction {
+public class GetVmInstanceProtectedRecoveryPointsAction extends AbstractAction {
 
     private static final HashMap<String, Parameter> parameterMap = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class UpdateCdpBackupStorageAction extends AbstractAction {
 
     public static class Result {
         public ErrorCode error;
-        public org.zstack.sdk.UpdateBackupStorageResult value;
+        public org.zstack.sdk.GetVmInstanceProtectedRecoveryPointsResult value;
 
         public Result throwExceptionIfError() {
             if (error != null) {
@@ -25,26 +25,14 @@ public class UpdateCdpBackupStorageAction extends AbstractAction {
         }
     }
 
-    @Param(required = false, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String username;
-
-    @Param(required = false, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String password;
-
-    @Param(required = false, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String hostname;
-
-    @Param(required = false, nonempty = false, nullElements = false, emptyString = true, numberRange = {1L,65535L}, noTrim = false)
-    public java.lang.Integer sshPort;
-
     @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
     public java.lang.String uuid;
 
-    @Param(required = false, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String name;
+    @Param(required = false)
+    public java.lang.Integer limit = 1000;
 
-    @Param(required = false, maxLength = 2048, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String description;
+    @Param(required = false)
+    public java.lang.Integer start = 0;
 
     @Param(required = false)
     public java.util.List systemTags;
@@ -64,12 +52,6 @@ public class UpdateCdpBackupStorageAction extends AbstractAction {
     @Param(required = false)
     public String requestIp;
 
-    @NonAPIParam
-    public long timeout = -1;
-
-    @NonAPIParam
-    public long pollingInterval = -1;
-
 
     private Result makeResult(ApiResult res) {
         Result ret = new Result();
@@ -78,8 +60,8 @@ public class UpdateCdpBackupStorageAction extends AbstractAction {
             return ret;
         }
         
-        org.zstack.sdk.UpdateBackupStorageResult value = res.getResult(org.zstack.sdk.UpdateBackupStorageResult.class);
-        ret.value = value == null ? new org.zstack.sdk.UpdateBackupStorageResult() : value; 
+        org.zstack.sdk.GetVmInstanceProtectedRecoveryPointsResult value = res.getResult(org.zstack.sdk.GetVmInstanceProtectedRecoveryPointsResult.class);
+        ret.value = value == null ? new org.zstack.sdk.GetVmInstanceProtectedRecoveryPointsResult() : value; 
 
         return ret;
     }
@@ -108,11 +90,11 @@ public class UpdateCdpBackupStorageAction extends AbstractAction {
 
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
-        info.httpMethod = "PUT";
-        info.path = "/cdp-backup-storage/{uuid}/actions";
+        info.httpMethod = "GET";
+        info.path = "/vm-instances/{uuid}/protected-recovery-points";
         info.needSession = true;
-        info.needPoll = true;
-        info.parameterName = "updateCdpBackupStorage";
+        info.needPoll = false;
+        info.parameterName = "";
         return info;
     }
 

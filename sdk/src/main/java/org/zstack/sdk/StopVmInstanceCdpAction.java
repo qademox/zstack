@@ -25,6 +25,9 @@ public class StopVmInstanceCdpAction extends AbstractAction {
         }
     }
 
+    @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
+    public java.lang.String uuid;
+
     @Param(required = false)
     public java.util.List systemTags;
 
@@ -88,7 +91,7 @@ public class StopVmInstanceCdpAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/cdp-backup-storage/stop";
+        info.path = "/cdp-backup-storage/stop-cdp/{uuid}";
         info.needSession = true;
         info.needPoll = true;
         info.parameterName = "params";

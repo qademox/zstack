@@ -1,18 +1,8 @@
-CREATE TABLE IF NOT EXISTS `zstack`.`CdpBackupStorageVO` (
-    `uuid` varchar(32) NOT NULL UNIQUE,
-    `hostname` varchar(255) NOT NULL UNIQUE,
-    `username` varchar(255) NOT NULL,
-    `password` varchar(255) NOT NULL,
-    `sshPort` int unsigned NOT NULL,
-    PRIMARY KEY  (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS `zstack`.`CdpPolicyEO` (
     `uuid` varchar(32) NOT NULL UNIQUE,
     `name` varchar(255) DEFAULT NULL,
     `description` varchar(2048) DEFAULT NULL,
     `retentionTimePerDay` int unsigned NOT NULL,
-    `incrementalPointPerMinute` int unsigned NOT NULL,
     `recoveryPointPerSecond` int unsigned NOT NULL,
     `state` varchar(32) NOT NULL,
     `deleted` varchar(255) DEFAULT NULL,
@@ -30,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `zstack`.`CdpPolicyRefVO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP VIEW IF EXISTS `zstack`.`CdpPolicyVO`;
-CREATE VIEW `zstack`.`CdpPolicyVO` AS SELECT uuid, name, description, retentionTimePerDay, incrementalPointPerMinute, recoveryPointPerSecond, state, lastOpDate, createDate FROM `zstack`.`CdpPolicyEO` WHERE deleted IS NULL;
+CREATE VIEW `zstack`.`CdpPolicyVO` AS SELECT uuid, name, description, retentionTimePerDay, recoveryPointPerSecond, state, lastOpDate, createDate FROM `zstack`.`CdpPolicyEO` WHERE deleted IS NULL;
 
 CREATE TABLE IF NOT EXISTS `zstack`.`CdpTaskVO` (
     `vmInstanceUuid` varchar(32) NOT NULL UNIQUE,

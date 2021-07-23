@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.zstack.sdk.*;
 
-public class AddCdpBackupStorageAction extends AbstractAction {
+public class ProtectVmInstanceRecoveryPointAction extends AbstractAction {
 
     private static final HashMap<String, Parameter> parameterMap = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class AddCdpBackupStorageAction extends AbstractAction {
 
     public static class Result {
         public ErrorCode error;
-        public org.zstack.sdk.AddCdpBackupStorageResult value;
+        public org.zstack.sdk.ProtectVmInstanceRecoveryPointResult value;
 
         public Result throwExceptionIfError() {
             if (error != null) {
@@ -25,38 +25,17 @@ public class AddCdpBackupStorageAction extends AbstractAction {
         }
     }
 
-    @Param(required = true, maxLength = 255, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
-    public java.lang.String hostname;
+    @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
+    public java.lang.String vmInstanceUuid;
 
-    @Param(required = true, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String username;
-
-    @Param(required = true, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String password;
-
-    @Param(required = false, nonempty = false, nullElements = false, emptyString = true, numberRange = {1L,65535L}, noTrim = false)
-    public int sshPort = 22;
-
-    @Param(required = true, maxLength = 2048, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
-    public java.lang.String url;
-
-    @Param(required = true, maxLength = 255, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String name;
-
-    @Param(required = false, maxLength = 2048, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String description;
+    @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
+    public java.lang.String recoveryPointId;
 
     @Param(required = false)
-    public java.lang.String type;
-
-    @Param(required = false, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public boolean importImages = false;
+    public java.lang.Integer limit = 1000;
 
     @Param(required = false)
-    public java.lang.String resourceUuid;
-
-    @Param(required = false, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.util.List tagUuids;
+    public java.lang.Integer start = 0;
 
     @Param(required = false)
     public java.util.List systemTags;
@@ -76,12 +55,6 @@ public class AddCdpBackupStorageAction extends AbstractAction {
     @Param(required = false)
     public String requestIp;
 
-    @NonAPIParam
-    public long timeout = -1;
-
-    @NonAPIParam
-    public long pollingInterval = -1;
-
 
     private Result makeResult(ApiResult res) {
         Result ret = new Result();
@@ -90,8 +63,8 @@ public class AddCdpBackupStorageAction extends AbstractAction {
             return ret;
         }
         
-        org.zstack.sdk.AddCdpBackupStorageResult value = res.getResult(org.zstack.sdk.AddCdpBackupStorageResult.class);
-        ret.value = value == null ? new org.zstack.sdk.AddCdpBackupStorageResult() : value; 
+        org.zstack.sdk.ProtectVmInstanceRecoveryPointResult value = res.getResult(org.zstack.sdk.ProtectVmInstanceRecoveryPointResult.class);
+        ret.value = value == null ? new org.zstack.sdk.ProtectVmInstanceRecoveryPointResult() : value; 
 
         return ret;
     }
@@ -121,10 +94,10 @@ public class AddCdpBackupStorageAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/cdp-backup-storage";
+        info.path = "/vm-instances/{uuid}/protect-recovery-point";
         info.needSession = true;
-        info.needPoll = true;
-        info.parameterName = "params";
+        info.needPoll = false;
+        info.parameterName = "";
         return info;
     }
 
