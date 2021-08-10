@@ -2,7 +2,7 @@ package org.zstack.sdk;
 
 
 
-public class RecoveryPointInfo  {
+public class RecoveryPoint {
 
     public long id;
     public void setId(long id) {

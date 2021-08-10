@@ -265,7 +265,7 @@ public class SourceClassMap {
 			put("org.zstack.header.storage.cdp.CdpPolicyState", "org.zstack.sdk.CdpPolicyState");
 			put("org.zstack.header.storage.cdp.CdpTaskInventory", "org.zstack.sdk.CdpTaskInventory");
 			put("org.zstack.header.storage.cdp.CdpTaskStatus", "org.zstack.sdk.CdpTaskStatus");
-			put("org.zstack.header.storage.cdp.RecoveryPointInfo", "org.zstack.sdk.RecoveryPointInfo");
+			put("org.zstack.header.storage.cdp.RecoveryPoint", "org.zstack.sdk.RecoveryPoint");
 			put("org.zstack.header.storage.database.backup.DatabaseBackupInventory", "org.zstack.sdk.databasebackup.DatabaseBackupInventory");
 			put("org.zstack.header.storage.database.backup.DatabaseBackupStorageRefInventory", "org.zstack.sdk.databasebackup.DatabaseBackupStorageRefInventory");
 			put("org.zstack.header.storage.database.backup.DatabaseBackupStruct", "org.zstack.sdk.databasebackup.DatabaseBackupStruct");
@@ -922,7 +922,7 @@ public class SourceClassMap {
 			put("org.zstack.sdk.QuotaUsage", "org.zstack.header.identity.Quota$QuotaUsage");
 			put("org.zstack.sdk.RaidControllerInventory", "org.zstack.storage.device.localRaid.RaidControllerInventory");
 			put("org.zstack.sdk.RaidPhysicalDriveInventory", "org.zstack.storage.device.localRaid.RaidPhysicalDriveInventory");
-			put("org.zstack.sdk.RecoveryPointInfo", "org.zstack.header.storage.cdp.RecoveryPointInfo");
+			put("org.zstack.sdk.RecoveryPoint", "org.zstack.header.storage.cdp.RecoveryPoint");
 			put("org.zstack.sdk.RemovalInstanceRuleInventory", "org.zstack.autoscaling.group.rule.RemovalInstanceRuleInventory");
 			put("org.zstack.sdk.ReplicationDiskStatus", "org.zstack.storage.primary.ministorage.ReplicationDiskStatus");
 			put("org.zstack.sdk.ReplicationGroupState", "org.zstack.imagereplicator.ReplicationGroupState");
