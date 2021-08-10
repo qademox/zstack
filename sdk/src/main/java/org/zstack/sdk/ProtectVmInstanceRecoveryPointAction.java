@@ -32,12 +32,6 @@ public class ProtectVmInstanceRecoveryPointAction extends AbstractAction {
     public java.lang.String recoveryPointId;
 
     @Param(required = false)
-    public java.lang.Integer limit = 1000;
-
-    @Param(required = false)
-    public java.lang.Integer start = 0;
-
-    @Param(required = false)
     public java.util.List systemTags;
 
     @Param(required = false)
@@ -54,6 +48,12 @@ public class ProtectVmInstanceRecoveryPointAction extends AbstractAction {
 
     @Param(required = false)
     public String requestIp;
+
+    @NonAPIParam
+    public long timeout = -1;
+
+    @NonAPIParam
+    public long pollingInterval = -1;
 
 
     private Result makeResult(ApiResult res) {
@@ -96,7 +96,7 @@ public class ProtectVmInstanceRecoveryPointAction extends AbstractAction {
         info.httpMethod = "PUT";
         info.path = "/vm-instances/{vmInstanceUuid}/protect-recovery-point";
         info.needSession = true;
-        info.needPoll = false;
+        info.needPoll = true;
         info.parameterName = "protectVmInstanceRecoveryPoint";
         return info;
     }
