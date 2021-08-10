@@ -94,7 +94,7 @@ public class UnprotectVmInstanceRecoveryPointAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/vm-instances/{uuid}/unprotect-recovery-point";
+        info.path = "/vm-instances/{vmInstanceUuid}/unprotect-recovery-point";
         info.needSession = true;
         info.needPoll = false;
         info.parameterName = "";
