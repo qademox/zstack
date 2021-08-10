@@ -93,11 +93,11 @@ public class ProtectVmInstanceRecoveryPointAction extends AbstractAction {
 
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
-        info.httpMethod = "POST";
+        info.httpMethod = "PUT";
         info.path = "/vm-instances/{vmInstanceUuid}/protect-recovery-point";
         info.needSession = true;
         info.needPoll = false;
-        info.parameterName = "";
+        info.parameterName = "protectVmInstanceRecoveryPoint";
         return info;
     }
 
