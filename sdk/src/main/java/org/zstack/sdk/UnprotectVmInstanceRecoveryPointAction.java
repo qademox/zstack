@@ -29,7 +29,7 @@ public class UnprotectVmInstanceRecoveryPointAction extends AbstractAction {
     public java.lang.String vmInstanceUuid;
 
     @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
-    public java.lang.String recoveryPointId;
+    public java.lang.String timestamp;
 
     @Param(required = false)
     public java.util.List systemTags;

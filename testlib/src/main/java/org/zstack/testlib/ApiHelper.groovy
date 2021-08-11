@@ -20780,8 +20780,8 @@ abstract class ApiHelper {
     }
 
 
-    def mountRecoveryPoint(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.MountRecoveryPointAction.class) Closure c) {
-        def a = new org.zstack.sdk.MountRecoveryPointAction()
+    def mountVmInstanceRecoveryPoint(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.MountVmInstanceRecoveryPointAction.class) Closure c) {
+        def a = new org.zstack.sdk.MountVmInstanceRecoveryPointAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
         c.resolveStrategy = Closure.OWNER_FIRST
         c.delegate = a
@@ -31858,8 +31858,8 @@ abstract class ApiHelper {
     }
 
 
-    def unmountRecoveryPoint(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.UnmountRecoveryPointAction.class) Closure c) {
-        def a = new org.zstack.sdk.UnmountRecoveryPointAction()
+    def unmountVmInstanceRecoveryPoint(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.UnmountVmInstanceRecoveryPointAction.class) Closure c) {
+        def a = new org.zstack.sdk.UnmountVmInstanceRecoveryPointAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
         c.resolveStrategy = Closure.OWNER_FIRST
         c.delegate = a

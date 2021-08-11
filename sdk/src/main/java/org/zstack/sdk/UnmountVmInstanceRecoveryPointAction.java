@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.zstack.sdk.*;
 
-public class MountRecoveryPointAction extends AbstractAction {
+public class UnmountVmInstanceRecoveryPointAction extends AbstractAction {
 
     private static final HashMap<String, Parameter> parameterMap = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class MountRecoveryPointAction extends AbstractAction {
 
     public static class Result {
         public ErrorCode error;
-        public org.zstack.sdk.MountRecoveryPointResult value;
+        public org.zstack.sdk.UnmountVmInstanceRecoveryPointResult value;
 
         public Result throwExceptionIfError() {
             if (error != null) {
@@ -29,7 +29,7 @@ public class MountRecoveryPointAction extends AbstractAction {
     public java.lang.String vmUuid;
 
     @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
-    public java.lang.String recoveryPointId;
+    public java.lang.String timestamp;
 
     @Param(required = false)
     public java.util.List systemTags;
@@ -63,8 +63,8 @@ public class MountRecoveryPointAction extends AbstractAction {
             return ret;
         }
         
-        org.zstack.sdk.MountRecoveryPointResult value = res.getResult(org.zstack.sdk.MountRecoveryPointResult.class);
-        ret.value = value == null ? new org.zstack.sdk.MountRecoveryPointResult() : value; 
+        org.zstack.sdk.UnmountVmInstanceRecoveryPointResult value = res.getResult(org.zstack.sdk.UnmountVmInstanceRecoveryPointResult.class);
+        ret.value = value == null ? new org.zstack.sdk.UnmountVmInstanceRecoveryPointResult() : value; 
 
         return ret;
     }
@@ -94,7 +94,7 @@ public class MountRecoveryPointAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/cdp-backup-storage/mount-recovery-point";
+        info.path = "/cdp-backup-storage/unmount-recovery-point";
         info.needSession = true;
         info.needPoll = true;
         info.parameterName = "params";
