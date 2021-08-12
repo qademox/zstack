@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.zstack.sdk.*;
 
-public class AttachCdpPolicyToVmInstanceAction extends AbstractAction {
+public class DisableCdpTaskAction extends AbstractAction {
 
     private static final HashMap<String, Parameter> parameterMap = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class AttachCdpPolicyToVmInstanceAction extends AbstractAction {
 
     public static class Result {
         public ErrorCode error;
-        public org.zstack.sdk.AttachCdpPolicyToVmInstanceResult value;
+        public org.zstack.sdk.DisableCdpTaskResult value;
 
         public Result throwExceptionIfError() {
             if (error != null) {
@@ -25,11 +25,8 @@ public class AttachCdpPolicyToVmInstanceAction extends AbstractAction {
         }
     }
 
-    @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String vmInstanceUuid;
-
-    @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
-    public java.lang.String cdpPolicyUuid;
+    @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
+    public java.lang.String uuid;
 
     @Param(required = false)
     public java.util.List systemTags;
@@ -63,8 +60,8 @@ public class AttachCdpPolicyToVmInstanceAction extends AbstractAction {
             return ret;
         }
         
-        org.zstack.sdk.AttachCdpPolicyToVmInstanceResult value = res.getResult(org.zstack.sdk.AttachCdpPolicyToVmInstanceResult.class);
-        ret.value = value == null ? new org.zstack.sdk.AttachCdpPolicyToVmInstanceResult() : value; 
+        org.zstack.sdk.DisableCdpTaskResult value = res.getResult(org.zstack.sdk.DisableCdpTaskResult.class);
+        ret.value = value == null ? new org.zstack.sdk.DisableCdpTaskResult() : value; 
 
         return ret;
     }
@@ -94,7 +91,7 @@ public class AttachCdpPolicyToVmInstanceAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/vm-instances/{vmInstanceUuid}/cdp-policy/{cdpPolicyUuid}";
+        info.path = "/cdp-task/disable/{uuid}";
         info.needSession = true;
         info.needPoll = true;
         info.parameterName = "params";

@@ -2852,33 +2852,6 @@ abstract class ApiHelper {
     }
 
 
-    def attachCdpPolicyToVmInstance(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.AttachCdpPolicyToVmInstanceAction.class) Closure c) {
-        def a = new org.zstack.sdk.AttachCdpPolicyToVmInstanceAction()
-        a.sessionId = Test.currentEnvSpec?.session?.uuid
-        c.resolveStrategy = Closure.OWNER_FIRST
-        c.delegate = a
-        c()
-        
-
-        if (System.getProperty("apipath") != null) {
-            if (a.apiId == null) {
-                a.apiId = Platform.uuid
-            }
-    
-            def tracker = new ApiPathTracker(a.apiId)
-            def out = errorOut(a.call())
-            def path = tracker.getApiPath()
-            if (!path.isEmpty()) {
-                Test.apiPaths[a.class.name] = path.join(" --->\n")
-            }
-        
-            return out
-        } else {
-            return errorOut(a.call())
-        }
-    }
-
-
     def attachDataVolumeToVm(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.AttachDataVolumeToVmAction.class) Closure c) {
         def a = new org.zstack.sdk.AttachDataVolumeToVmAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
@@ -6634,6 +6607,33 @@ abstract class ApiHelper {
 
     def createCdpPolicy(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.CreateCdpPolicyAction.class) Closure c) {
         def a = new org.zstack.sdk.CreateCdpPolicyAction()
+        a.sessionId = Test.currentEnvSpec?.session?.uuid
+        c.resolveStrategy = Closure.OWNER_FIRST
+        c.delegate = a
+        c()
+        
+
+        if (System.getProperty("apipath") != null) {
+            if (a.apiId == null) {
+                a.apiId = Platform.uuid
+            }
+    
+            def tracker = new ApiPathTracker(a.apiId)
+            def out = errorOut(a.call())
+            def path = tracker.getApiPath()
+            if (!path.isEmpty()) {
+                Test.apiPaths[a.class.name] = path.join(" --->\n")
+            }
+        
+            return out
+        } else {
+            return errorOut(a.call())
+        }
+    }
+
+
+    def createCdpTask(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.CreateCdpTaskAction.class) Closure c) {
+        def a = new org.zstack.sdk.CreateCdpTaskAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
         c.resolveStrategy = Closure.OWNER_FIRST
         c.delegate = a
@@ -14138,33 +14138,6 @@ abstract class ApiHelper {
     }
 
 
-    def detachCdpPolicyToVmInstance(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.DetachCdpPolicyToVmInstanceAction.class) Closure c) {
-        def a = new org.zstack.sdk.DetachCdpPolicyToVmInstanceAction()
-        a.sessionId = Test.currentEnvSpec?.session?.uuid
-        c.resolveStrategy = Closure.OWNER_FIRST
-        c.delegate = a
-        c()
-        
-
-        if (System.getProperty("apipath") != null) {
-            if (a.apiId == null) {
-                a.apiId = Platform.uuid
-            }
-    
-            def tracker = new ApiPathTracker(a.apiId)
-            def out = errorOut(a.call())
-            def path = tracker.getApiPath()
-            if (!path.isEmpty()) {
-                Test.apiPaths[a.class.name] = path.join(" --->\n")
-            }
-        
-            return out
-        } else {
-            return errorOut(a.call())
-        }
-    }
-
-
     def detachDataVolumeFromVm(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.DetachDataVolumeFromVmAction.class) Closure c) {
         def a = new org.zstack.sdk.DetachDataVolumeFromVmAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
@@ -14921,6 +14894,33 @@ abstract class ApiHelper {
     }
 
 
+    def disableCdpTask(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.DisableCdpTaskAction.class) Closure c) {
+        def a = new org.zstack.sdk.DisableCdpTaskAction()
+        a.sessionId = Test.currentEnvSpec?.session?.uuid
+        c.resolveStrategy = Closure.OWNER_FIRST
+        c.delegate = a
+        c()
+        
+
+        if (System.getProperty("apipath") != null) {
+            if (a.apiId == null) {
+                a.apiId = Platform.uuid
+            }
+    
+            def tracker = new ApiPathTracker(a.apiId)
+            def out = errorOut(a.call())
+            def path = tracker.getApiPath()
+            if (!path.isEmpty()) {
+                Test.apiPaths[a.class.name] = path.join(" --->\n")
+            }
+        
+            return out
+        } else {
+            return errorOut(a.call())
+        }
+    }
+
+
     def downloadBackupFileFromPublicCloud(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.DownloadBackupFileFromPublicCloudAction.class) Closure c) {
         def a = new org.zstack.sdk.DownloadBackupFileFromPublicCloudAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
@@ -14950,6 +14950,33 @@ abstract class ApiHelper {
 
     def ejectZBox(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.EjectZBoxAction.class) Closure c) {
         def a = new org.zstack.sdk.EjectZBoxAction()
+        a.sessionId = Test.currentEnvSpec?.session?.uuid
+        c.resolveStrategy = Closure.OWNER_FIRST
+        c.delegate = a
+        c()
+        
+
+        if (System.getProperty("apipath") != null) {
+            if (a.apiId == null) {
+                a.apiId = Platform.uuid
+            }
+    
+            def tracker = new ApiPathTracker(a.apiId)
+            def out = errorOut(a.call())
+            def path = tracker.getApiPath()
+            if (!path.isEmpty()) {
+                Test.apiPaths[a.class.name] = path.join(" --->\n")
+            }
+        
+            return out
+        } else {
+            return errorOut(a.call())
+        }
+    }
+
+
+    def enableCdpTask(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.EnableCdpTaskAction.class) Closure c) {
+        def a = new org.zstack.sdk.EnableCdpTaskAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
         c.resolveStrategy = Closure.OWNER_FIRST
         c.delegate = a
@@ -30805,33 +30832,6 @@ abstract class ApiHelper {
     }
 
 
-    def startVmInstanceCdp(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.StartVmInstanceCdpAction.class) Closure c) {
-        def a = new org.zstack.sdk.StartVmInstanceCdpAction()
-        a.sessionId = Test.currentEnvSpec?.session?.uuid
-        c.resolveStrategy = Closure.OWNER_FIRST
-        c.delegate = a
-        c()
-        
-
-        if (System.getProperty("apipath") != null) {
-            if (a.apiId == null) {
-                a.apiId = Platform.uuid
-            }
-    
-            def tracker = new ApiPathTracker(a.apiId)
-            def out = errorOut(a.call())
-            def path = tracker.getApiPath()
-            if (!path.isEmpty()) {
-                Test.apiPaths[a.class.name] = path.join(" --->\n")
-            }
-        
-            return out
-        } else {
-            return errorOut(a.call())
-        }
-    }
-
-
     def stopBaremetalInstance(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.StopBaremetalInstanceAction.class) Closure c) {
         def a = new org.zstack.sdk.StopBaremetalInstanceAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
@@ -30915,33 +30915,6 @@ abstract class ApiHelper {
 
     def stopVmInstance(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.StopVmInstanceAction.class) Closure c) {
         def a = new org.zstack.sdk.StopVmInstanceAction()
-        a.sessionId = Test.currentEnvSpec?.session?.uuid
-        c.resolveStrategy = Closure.OWNER_FIRST
-        c.delegate = a
-        c()
-        
-
-        if (System.getProperty("apipath") != null) {
-            if (a.apiId == null) {
-                a.apiId = Platform.uuid
-            }
-    
-            def tracker = new ApiPathTracker(a.apiId)
-            def out = errorOut(a.call())
-            def path = tracker.getApiPath()
-            if (!path.isEmpty()) {
-                Test.apiPaths[a.class.name] = path.join(" --->\n")
-            }
-        
-            return out
-        } else {
-            return errorOut(a.call())
-        }
-    }
-
-
-    def stopVmInstanceCdp(@DelegatesTo(strategy = Closure.OWNER_FIRST, value = org.zstack.sdk.StopVmInstanceCdpAction.class) Closure c) {
-        def a = new org.zstack.sdk.StopVmInstanceCdpAction()
         a.sessionId = Test.currentEnvSpec?.session?.uuid
         c.resolveStrategy = Closure.OWNER_FIRST
         c.delegate = a

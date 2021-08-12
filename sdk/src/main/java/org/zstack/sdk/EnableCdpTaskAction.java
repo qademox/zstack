@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.zstack.sdk.*;
 
-public class StopVmInstanceCdpAction extends AbstractAction {
+public class EnableCdpTaskAction extends AbstractAction {
 
     private static final HashMap<String, Parameter> parameterMap = new HashMap<>();
 
@@ -12,7 +12,7 @@ public class StopVmInstanceCdpAction extends AbstractAction {
 
     public static class Result {
         public ErrorCode error;
-        public org.zstack.sdk.StopVmInstanceCdpResult value;
+        public org.zstack.sdk.EnableCdpTaskResult value;
 
         public Result throwExceptionIfError() {
             if (error != null) {
@@ -25,7 +25,7 @@ public class StopVmInstanceCdpAction extends AbstractAction {
         }
     }
 
-    @Param(required = true, nonempty = false, nullElements = false, emptyString = true, noTrim = false)
+    @Param(required = true, nonempty = false, nullElements = false, emptyString = false, noTrim = false)
     public java.lang.String uuid;
 
     @Param(required = false)
@@ -60,8 +60,8 @@ public class StopVmInstanceCdpAction extends AbstractAction {
             return ret;
         }
         
-        org.zstack.sdk.StopVmInstanceCdpResult value = res.getResult(org.zstack.sdk.StopVmInstanceCdpResult.class);
-        ret.value = value == null ? new org.zstack.sdk.StopVmInstanceCdpResult() : value; 
+        org.zstack.sdk.EnableCdpTaskResult value = res.getResult(org.zstack.sdk.EnableCdpTaskResult.class);
+        ret.value = value == null ? new org.zstack.sdk.EnableCdpTaskResult() : value; 
 
         return ret;
     }
@@ -91,7 +91,7 @@ public class StopVmInstanceCdpAction extends AbstractAction {
     protected RestInfo getRestInfo() {
         RestInfo info = new RestInfo();
         info.httpMethod = "POST";
-        info.path = "/cdp-backup-storage/stop-cdp/{uuid}";
+        info.path = "/cdp-task/enable/{uuid}";
         info.needSession = true;
         info.needPoll = true;
         info.parameterName = "params";
